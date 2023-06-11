@@ -1,0 +1,703 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Java como un principiante</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c603258-184d-461a-b712-f7a5673535e6" class="page sans"><header><h1 class="page-title">Java como un principiante</h1><p class="page-description"></p></header><div class="page-body"><nav id="0d86e9ee-07aa-4db6-b5d0-40c21255665a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e3797da8-6c6b-4e1a-89ea-2afd224eef22">Introducción - Historia de Java</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a7c141ec-1e64-4207-bda0-39a4133e0256">Capitulo 1 - ¿Cómo funcionan las aplicaciones en nuestro día a día? </a></div></nav><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3">Introducción - Historia de Java</summary><div class="indented"><p id="26950109-7fd0-447f-bc8e-c1119f5caf6b" class="">Java es un lenguaje de programación de alto nivel desarrollado por Sun Microsystems en la década de 1990. Fue diseñado para ser portable, lo que significa que podría ejecutarse en cualquier plataforma que tuviera una máquina virtual Java (JVM) instalada. El lenguaje fue un cambio revolucionario en la tecnología y rápidamente se convirtió en uno de los lenguajes de programación más populares del mundo.</p><p id="a907c000-0fff-4125-9fd6-514b89d40119" class="">Hoy en día, Java sigue siendo una tecnología crítica en el mundo de la informática. Es la base de muchas aplicaciones empresariales y sistemas embebidos, y es utilizado por empresas como Google y Amazon para desarrollar aplicaciones de alta escala. Además, Java es un lenguaje de programación importante para la plataforma Android y es utilizado por desarrolladores para crear aplicaciones móviles. Con su combinación de portabilidad, seguridad y capacidad de escalamiento, Java sigue siendo una de las tecnologías más importantes en el mercado actual.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3">Capitulo 1 - ¿Cómo funcionan las aplicaciones en nuestro día a día? </summary><div class="indented"><p id="07394d83-2cbb-4946-968b-dd5f1262ea4a" class="">Nuestras computadoras utilizan un lenguaje numérico para operar, Este lenguaje es conocido como código binario y se compone de una serie de ceros y unos que representan información. Sin embargo, este lenguaje no es muy práctico para los humanos, ya que es difícil de leer y comprender. Por eso, se han desarrollado lenguajes de programación de alto nivel como Java, que permiten a los programadores escribir código en un formato más legible y fácil de entender. Este código es luego traducido a código binario por la computadora para su ejecución.</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">Compilación</summary><div class="indented"><p id="3af102f4-17a3-427e-90fd-23d191ebb706" class="">El compilador se encarga de traducir el código fuente en una serie de instrucciones que la computadora puede entender y ejecutar. Durante este proceso, el compilador también realiza una serie de optimizaciones en el código para mejorar su eficiencia y rendimiento.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d495bc2f-df27-4a40-8508-7218ac0c460f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">La compilación es el proceso en el que se traduce el código fuente escrito en un lenguaje de programación de alto nivel como Java a un lenguaje de bajo nivel como el código binario. Este proceso se lleva a cabo por un compilador, que es un programa que toma el código fuente como entrada y produce un archivo ejecutable como salida.</div></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">Interpretación</summary><div class="indented"><p id="1f5256d7-84ec-4bf6-b38c-84c1079cb1d1" class="">La interpretación es un proceso en el que un programa de computadora ejecuta el código fuente directamente. En lugar de compilar el código fuente a un archivo ejecutable, un intérprete lee el código fuente línea por línea y lo ejecuta en tiempo real.</p><p id="ecf0915a-960a-4eb2-bfb9-4358f140a4a9" class="">En los lenguajes interpretados, como Python y JavaScript, el código fuente se ejecuta en un intérprete. Este proceso es más lento que la compilación, pero tiene la ventaja de que el código fuente es más fácil de depurar y modificar.</p><p id="70295270-66cc-41ea-92e0-3d7ff58f71c4" class="">Java es un lenguaje híbrido, lo que significa que utiliza tanto la interpretación como la compilación. El código fuente se compila en bytecode, que luego se interpreta por la JVM. Esto permite que el código Java sea altamente portable y pueda ejecutarse en cualquier plataforma que tenga una JVM instalada.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c2462357-af19-477b-9c57-d9e033cff34a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">La interpretación se podría explicar en el proceso donde un lenguaje tiene que depender de una aplicación para entender el código brindado y ejecutarlo correctamente de forma necesaria, igual puedes ejecutar el código pero si o si necesitaras de un interprete para entender tu código. </div></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">Intermedio</summary><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="98d023fe-49fc-45ab-b330-152dc94d2659"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un lenguaje de programación que puede tanto compilar como interpretar se denomina a menudo un lenguaje híbrido o un lenguaje de programación intermedio. Java es un ejemplo de este tipo de lenguaje.</div></figure><p id="f3fc7cc4-199e-41e1-b027-bcd1494badb9" class="">En Java, el código fuente se escribe en archivos con extensión &quot;.java&quot;. El proceso de compilación en Java convierte estos archivos de código fuente en archivos de bytecode, que tienen extensión &quot;.class&quot;. Este bytecode es un conjunto de instrucciones que puede ser interpretado por la Máquina Virtual de Java (JVM, por sus siglas en inglés).</p><p id="2e7a64ef-d500-45ac-a4a0-66e8d38c8fbb" class="">La JVM es un entorno de ejecución que puede interpretar el bytecode y ejecutar el programa. La interpretación implica leer las instrucciones del bytecode una por una y ejecutarlas directamente en la máquina en tiempo de ejecución.</p><p id="e1ff42e9-a0fa-4af9-ab4d-b72d22228892" class="">Sin embargo, Java también utiliza una técnica llamada compilación en tiempo de ejecución o Just-in-Time (JIT). Durante la ejecución del programa, la JVM puede analizar el bytecode y compilar partes del programa en código máquina nativo específico de la plataforma en la que se está ejecutando. Esto se hace para mejorar el rendimiento, ya que el código nativo puede ejecutarse más rápido que el bytecode interpretado.</p><p id="e3d79a6d-395d-4419-8a83-eacd63dbbfbb" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">Open Source</summary><div class="indented"><p id="146096f5-f592-4a52-a0e4-42e4b0e9f804" class="">El término &quot;open source&quot; sí existía antes de Java, y Java no fue el pionero en crearlo. La idea y el concepto de software de código abierto (open source en inglés) surgieron mucho antes de la creación de Java.</p><p id="3acfc68b-4e0f-4f80-866e-abace5b92a8d" class="">El movimiento del software de código abierto se remonta al menos a la década de 1980. Richard Stallman, fundador de la Free Software Foundation, promovió la idea del software libre, que se basa en los principios de la libertad de usar, estudiar, modificar y distribuir el software. El proyecto GNU, iniciado por Stallman en 1983, sentó las bases del movimiento del software libre y proporcionó una serie de herramientas y programas libres.</p><p id="389b84bf-e2c0-4f03-b539-a18bccd20d38" class="">Posteriormente, en la década de 1990, el término &quot;open source&quot; comenzó a utilizarse para describir el enfoque de desarrollo de software que fomenta la colaboración, la transparencia y la disponibilidad del código fuente para su inspección y modificación. La Open Source Initiative (OSI) fue fundada en 1998 para promover y defender el uso de software de código abierto.</p><p id="5917c549-b72b-44c8-b962-80a56d23f8bc" class="">Java, por su parte, fue lanzado en 1995 por Sun Microsystems (ahora propiedad de Oracle). Aunque Java se distribuye bajo una licencia de código abierto (la Licencia Pública General de GNU), no fue el primer proyecto o lenguaje de programación de código abierto.</p><p id="21bc2444-eae0-4b85-9b14-dc6b77ce6c58" class="">Antes de Java, ya existían otros proyectos y lenguajes de programación de código abierto notables, como GNU Compiler Collection (GCC), Perl, Python y el sistema operativo Unix, entre otros.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">¿Qué es la Máquina Virtual de Java?</summary><div class="indented"><p id="985ca363-16e6-47a7-b8c7-47d24e2e0f9f" class="">La Máquina Virtual de Java (JVM, por sus siglas en inglés) es un componente fundamental en la ejecución de programas escritos en Java. Como senior, puedo ofrecerte una explicación más detallada sobre la JVM.</p><ol type="1" id="4094887f-156c-4786-a0a5-8aec7b0c99e2" class="numbered-list" start="1"><li>Definición de la JVM:
+La JVM es una máquina virtual que proporciona un entorno de ejecución para los programas escritos en Java. Es una implementación de la especificación Java Virtual Machine Specification, que define el formato del archivo de bytecode, la estructura de la memoria y las instrucciones de la JVM.</li></ol><ol type="1" id="2532a60d-27a0-44cd-95c0-0513ef350eb2" class="numbered-list" start="2"><li>Funcionamiento de la JVM:
+Cuando ejecutas un programa en Java, el código fuente se compila en bytecode, que es un código de nivel intermedio independiente de la plataforma. A continuación, la JVM interpreta y ejecuta ese bytecode o, en algunos casos, lo compila a código máquina nativo en tiempo de ejecución para obtener un mejor rendimiento.<p id="67ae4dcc-db6e-4cb4-8902-c7fa704fb28a" class="">La JVM consta de varios componentes clave:</p><ul id="0736ca2f-8337-442f-abb0-a8f14e2bf061" class="bulleted-list"><li style="list-style-type:disc">Class Loader (Cargador de Clases): Carga las clases necesarias en tiempo de ejecución y las prepara para su uso en la JVM. Las clases se cargan bajo demanda, cuando se requieren.</li></ul><ul id="7b77c3c8-c3e5-4c6e-b614-46f610d4567c" class="bulleted-list"><li style="list-style-type:disc">Runtime Data Area (Área de Datos en Tiempo de Ejecución): Es el espacio de memoria utilizado por la JVM para almacenar datos durante la ejecución del programa. Se compone de varias secciones, como el Heap, la Stack, el método area, entre otros.</li></ul><ul id="ffda64b9-9bb0-4ac4-8e60-47f74a0e4846" class="bulleted-list"><li style="list-style-type:disc">Execution Engine (Motor de Ejecución): Ejecuta el bytecode o realiza la compilación just-in-time (JIT) a código máquina nativo. Puede utilizar diferentes enfoques, como la interpretación pura, la compilación JIT o una combinación de ambos.</li></ul><ul id="e70d13af-9ad2-4181-9793-3fb7a6feb5c4" class="bulleted-list"><li style="list-style-type:disc">Garbage Collector (Recolector de Basura): Administra la memoria y se encarga de liberar los objetos que ya no son utilizados por el programa, evitando así la aparición de fugas de memoria.</li></ul></li></ol><ol type="1" id="e028bdb8-2421-4efd-82ba-82c96f34a377" class="numbered-list" start="3"><li>Beneficios de la JVM:
+La JVM ofrece una serie de beneficios importantes:<ul id="83d7733a-ef4c-4409-8bbc-d86df1dbb7bb" class="bulleted-list"><li style="list-style-type:disc">Portabilidad: El bytecode generado por la JVM es independiente de la plataforma. Puedes escribir un programa en Java y ejecutarlo en cualquier sistema operativo que tenga una implementación de la JVM.</li></ul><ul id="a4599a4d-42a1-4698-8cba-8edee0d7cc73" class="bulleted-list"><li style="list-style-type:disc">Seguridad: La JVM proporciona un entorno seguro para la ejecución de programas, con mecanismos de control de seguridad y sandboxing que protegen el sistema anfitrión de posibles amenazas.</li></ul><ul id="024cea05-7660-46cf-ad48-baac02a36d91" class="bulleted-list"><li style="list-style-type:disc">Gestión automática de memoria: La JVM se encarga de la gestión de memoria, incluyendo la asignación y liberación automática de memoria para los objetos, gracias al recolector de basura.</li></ul><ul id="3fd8d7cd-42dd-45c3-ad1c-e95e330141bc" class="bulleted-list"><li style="list-style-type:disc">Optimización de rendimiento: La JVM utiliza técnicas de optimización, como la compilación JIT, para mejorar el rendimiento de los programas en tiempo de ejecución.</li></ul><ul id="32b6b7ca-3dcf-4ba5-9685-8dddb6f3c236" class="bulleted-list"><li style="list-style-type:disc">Soporte para herramientas y librerías: La JVM cuenta con un amplio ecosistema de herramientas, librerías y frameworks que facilitan el desarrollo de aplicaciones en Java.</li></ul></li></ol><ol type="1" id="eb6a371b-1a9f-490f-9258-aa11218ad685" class="numbered-list" start="4"><li>Implementaciones de la JVM:
+Existen diferentes implementaciones de la JVM, como Oracle HotSpot JVM, OpenJDK, IBM J9, entre otras. Estas implementaciones pueden variar en términos de rendimiento, características y herramientas adicionales.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3">Entonces ¿Cómo funciona Java? </summary><div class="indented"><p id="9f3ad76f-74ed-4798-9165-66a0bd264c49" class="">Claro, aquí tienes una explicación paso a paso sobre cómo funciona Java como un lenguaje intermedio entre la interpretación y la compilación, y te mostraré un ejemplo sencillo de código en Java junto con el código en bytecode y binario resultante.</p><ol type="1" id="d5cd2e2c-6bc5-4b67-8a89-03d473e00845" class="numbered-list" start="1"><li>Escribir el código en Java:
+En Java, se escribe el código fuente en archivos con extensión &quot;.java&quot;. Por ejemplo, consideremos el siguiente código sencillo que muestra un mensaje en una ventana:</li></ol><pre id="b60338b1-8a55-4994-b601-d202dfbbc0cb" class="code code-wrap"><code>import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class MiVentana {
+    public static void main(String[] args) {
+        JFrame ventana = new JFrame(&quot;Ejemplo Java&quot;);
+        JLabel etiqueta = new JLabel(&quot;Hola, mundo!&quot;);
+
+        ventana.getContentPane().add(etiqueta);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(300, 200);
+        ventana.setVisible(true);
+    }
+}
+</code></pre><ol type="1" id="7224e142-4f4d-459a-bece-3f7d5c1084ef" class="numbered-list" start="1"><li>Compilación:
+El código fuente en Java se compila utilizando el compilador de Java (javac), que genera archivos en bytecode. El bytecode es un conjunto de instrucciones de bajo nivel que puede ser ejecutado en cualquier plataforma que tenga una máquina virtual de Java (JVM, por sus siglas en inglés).</li></ol><ol type="1" id="fed7c9e4-355e-43aa-822c-342873fbddd4" class="numbered-list" start="2"><li>Generación del bytecode:
+Para compilar el código, abres una ventana de comandos, te ubicas en la carpeta donde se encuentra el archivo de código fuente y ejecutas el siguiente comando:<pre id="21f3f899-3887-46d5-8c17-8bf9559d9ac2" class="code code-wrap"><code>javac MiVentana.java
+</code></pre><p id="e60ca60c-0141-4230-a50c-e079a3a82be0" class="">Esto generará un archivo llamado &quot;MiVentana.class&quot;, que contiene el bytecode.</p></li></ol><ol type="1" id="3b0a684e-8949-4175-9cc3-56ebd5e5d07e" class="numbered-list" start="3"><li>Ejecución del bytecode:
+Para ejecutar el bytecode, puedes usar el intérprete de Java (java). En la ventana de comandos, te ubicas en la carpeta donde se encuentra el archivo &quot;MiVentana.class&quot; y ejecutas el siguiente comando:<pre id="b9055dfd-0cbc-4300-9479-9d2a2cdcfedc" class="code code-wrap"><code>java MiVentana
+</code></pre><p id="a2307565-f9a5-48ef-a86c-83b3dc289e2c" class="">Esto iniciará la máquina virtual de Java (JVM) y ejecutará el bytecode contenido en el archivo &quot;MiVentana.class&quot;.</p></li></ol><ol type="1" id="d68f2810-7f2e-4db7-ac0e-512283d305e1" class="numbered-list" start="4"><li>Código en bytecode y binario:
+El bytecode es un código de bajo nivel que está compuesto por instrucciones específicas de la JVM. No es fácilmente legible para los humanos. El binario, por otro lado, es el resultado final de la compilación del bytecode y se ejecuta directamente por la máquina. El binario es aún menos legible para los humanos y está compuesto por instrucciones de bajo nivel específicas para la arquitectura de la máquina.<p id="9b865e09-9bd4-437d-8ca1-5ae8880de133" class="">A continuación, se muestra una representación simplificada del bytecode y el binario correspondientes al ejemplo de código anterior:</p><p id="72a2f8ad-8f21-4374-81df-59605db7c977" class="">Bytecode (MiVentana.class):</p><pre id="8e7f2ed0-b23b-41e9-8df1-38173004c87f" class="code code-wrap"><code>[bytecode hexadecimal]
+</code></pre><p id="1dd7daf7-b77a-46ad-b0d1-af93fa94642c" class="">Binario (ejecutable de la máquina):</p><pre id="942f8f1a-0e3f-43bd-991d-18e3e8dad932" class="code code-wrap"><code>[instrucciones binarias específicas para la arquitectura]
+</code></pre></li></ol><p id="be047f03-9c2b-469e-a106-17646edff4b5" class="">Recuerda que el bytecode es independiente de la plataforma y puede ser ejecutado en cualquier sistema que tenga una JVM instalada. La JVM se encarga de interpretar y ejecutar el bytecode en el entorno específico del sistema operativo en el que se esté ejecutando.</p></div></details></div></details><p id="6dfc8af6-4bbb-4257-8937-567c0bfaaaa3" class="">
+</p></div></article></body></html>
