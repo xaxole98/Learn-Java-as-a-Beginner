@@ -6,8 +6,8 @@ Although the videos may not be highly polished, they are free and will provide a
 
 ## Language / Idioma
 
-- [English](README.md)
-- [Español](README_ES.md)
+- [English](README.md) 
+- [Español](README_ES.md) 
 
 ## Contents
 
