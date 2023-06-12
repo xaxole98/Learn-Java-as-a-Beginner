@@ -30,7 +30,7 @@ Estos videos están diseñados para ser seguidos en orden, lo que te permitirá 
 
 ## Cómo utilizar esta página web
 
-1. Accede a la página web [Aprende Java como un Principiante](https://xaxole98.github.io/Aprende-Java-como-un-Principiante/).
+1. Accede a la página web [Aprende Java como un Principiante](https://xaxole98.github.io/Learn-Java-as-a-Beginner/).
 2. Explora la lista de reproducción de videos para encontrar el tema que deseas aprender.
 3. Haz clic en el enlace del video para reproducirlo directamente en YouTube.
 4. Aprovecha los recursos adicionales proporcionados, como ejercicios de programación y enlaces a documentación relacionada.
